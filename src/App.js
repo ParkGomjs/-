@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={() => setModalOpen(true)}>모달창 열기</button>
+      {modalOpen && (
+        <div className="modalOverlay" onClick={() => setModalOpen(false)}>
+          <div className="modalWindow" onClick={(e) => e.stopPropagation()}>
+            <h1>모달창</h1>
+            <p>이곳은 모달창입니다.</p>
+            <button onClick={() => setModalOpen(false)}>닫기</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
